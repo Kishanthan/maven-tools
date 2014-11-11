@@ -20,11 +20,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.wso2.maven</groupId>
+    <groupId>org.wso2.maven.p2.plugin</groupId>
     <artifactId>carbon-p2-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <version>1.5.4-SNAPSHOT</version>
     <name>Maven P2 Profile Generation Plugin</name>
+
+    <scm>
+        <developerConnection>scm:git:https://github.com/Kishanthan/maven-tools.git</developerConnection>
+<tag>HEAD</tag>
+  </scm>
 
     <dependencies>
         <dependency>
@@ -121,24 +126,25 @@
           </execution>
         </executions>
       </plugin>
+		 <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>2.5</version>
+                </plugin>
+                <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                </plugin>
+
         </plugins>
     </build>
     <repositories>
         <repository>
-			<id>sonatype-release</id>
-			<url>http://repository.sonatype.org/content/groups/sonatype-public-grid</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-        <repository>
-            <id>dist-wso2</id>
-            <name>WSO2 Standard Repository</name>
-            <url>http://dist.wso2.org/maven2</url>
+            <id>nexus-releases</id>
+            <name>WSO2 Release Distribution Repository</name>
+            <url>http://localhost:8081/nexus/service/local/staging/deploy/maven2/</url>
         </repository>
+
         <repository>
             <id>wso2-maven2-repository-snapshot</id>
             <name>WSO2 Standard Snapshot Repository</name>
